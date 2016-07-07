@@ -28,6 +28,21 @@ var albumMarconi = {
     ]
 };
 
+var albumFord = {
+    title: 'Built Tough',
+    artist: 'Ford Co',
+    label: 'Autos',
+    year: '1940',
+    albumArtUrl: 'assets/images/album_covers/12.png',
+    songs: [
+        { title: 'Riding the F150', duration: '2:37' },
+        { title: 'Mustang Sally', duration: '5:45' },
+        { title: 'Fusion Delight', duration: '4:57' },
+        { title: 'Escape to the Wilderness', duration: '3:45' },
+        { title: 'Focus on performance', duration: '2:38'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
         '<tr class="album-view-song-item">'
@@ -39,12 +54,13 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
     
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -60,4 +76,16 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    
+    var albums = [albumPicasso, albumMarconi, albumFord];
+    var index = 1;
+    
+    albumImage.addEventListener('click', function(event) {
+       setCurrentAlbum(albums[index]);
+       index++;
+        if (index == albums.length) {
+            index = 0;
+        }
+    });
 };
+
