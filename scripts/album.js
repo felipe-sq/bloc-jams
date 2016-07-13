@@ -66,6 +66,29 @@ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
     
+    var findParentByClassName = function(element, targetClass) {
+        if (element) {
+            var currentParent = element.parentElement;
+            while (currentParent.className != targetClass && currentParent.className !== null) {
+                currentParent = currentParent.parentElement;
+            }
+            return currentParent;
+        }
+    };
+    
+    var getSongItem = function(element) {
+        switch (element) {
+            case ".song-item-number":
+                //code goes here
+                document.findParentByClassName("result");
+            break;
+            default:
+                //code goes here
+                document.findParentByClassName("result");
+            break;
+        }
+    }
+    
     songListContainer.addEventListener('mouseover', function(event) {
         if (event.target.parentElement.className === 'album-view-song-item') {
             event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
