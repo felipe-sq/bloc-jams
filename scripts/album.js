@@ -76,6 +76,10 @@ window.onload = function() {
                 currentParent = currentParent.parentElement;
             }
             return currentParent;
+        } else if (currentParent === null) {
+            return "No parent found";
+        } else if (currentParent !== currentParent.parentElement) {
+            return "No parent found with that class name";
         }
     };
     
